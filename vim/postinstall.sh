@@ -1,0 +1,1 @@
+/home/niltnir09/dotfiles/shell/scripts/vim-postinstall.sh

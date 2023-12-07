@@ -1,0 +1,7 @@
+[user]
+	email = nnyltnir09@protonmail.com
+	name = niltnir
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
