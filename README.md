@@ -41,5 +41,5 @@ so I can't guarantee everything will work properly. If you still want to try it
 out, run:
 
 ```bash
-./INSTALL.sh
+./INSTALL
 ```
