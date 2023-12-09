@@ -1,0 +1,107 @@
+#!/bin/bash
+############################
+# This script creates symlinks from default directories to any desired dotfiles in ~/dotfiles
+############################
+
+########## Variables
+
+DOTFILES_HOME="$HOME/dotfiles"
+DOTFILES_BACKUP="$HOME/.dotfiles_old"
+HOME_CONFIG="$HOME/.config"
+
+BASH_FILES="bashrc env alias functions prompt bash_logout"
+CONFIG_DIRECTORIES="alacritty ranger zathura mpv vimiv autostart common-lisp"
+
+##########
+
+# Create .dotfiles_old in homedir
+if ! test -d "${DOTFILES_BACKUP}"; then
+  echo -n "Creating ${DOTFILES_BACKUP} for backup of any existing dotfiles in ~ ..."
+  mkdir -p ${DOTFILES_BACKUP}
+  echo -e "done \n"
+fi
+
+# Change to the dotfiles directory
+echo -n "Changing to the ${DOTFILES_HOME} directory ..."
+cd ${DOTFILES_HOME}
+echo -e "done \n"
+
+# Move any existing dotfiles in homedir to .dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory
+# Symlinking Files:
+echo -e "Moving any existing dotfiles in ~ to ${DOTFILES_BACKUP} and creating new symlinks. \n"
+
+if test -d "$HOME/.profile"; then mv "$HOME/.profile" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to profile in home directory."
+ln -sv "${DOTFILES_HOME}/shell/profile" "$HOME/.profile"
+
+if test -d "$HOME/.gitignore"; then mv "$HOME/.gitignore" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to gitignore in workenv directory."
+ln -sv "${DOTFILES_HOME}/git/gitignore" "$HOME/workenv/.gitignore"
+
+if test -d "$HOME/.vimrc"; then mv "$HOME/.vimrc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to vimrc in home directory."
+ln -sv "${DOTFILES_HOME}/vim/vimrc" "$HOME/.vimrc"
+
+if test -d "$HOME/.gitconfig"; then mv "$HOME/.gitconfig" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to gitconfig in home directory."
+ln -sv "${DOTFILES_HOME}/git/gitconfig" "$HOME/.gitconfig"
+
+if test -d "$HOME/.tridactylrc"; then mv "$HOME/.tridactylrc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to tridactylrc in home directory."
+ln -sv "${DOTFILES_HOME}/browser/firefox/ui/tridactylrc" "$HOME/.tridactylrc"
+
+if test -d "$HOME/.latexmkrc"; then mv "$HOME/.latexmkrc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to latexmkrc in home directory."
+ln -sv "${DOTFILES_HOME}/latexmkrc" "$HOME/.latexmkrc"
+
+if test -d "$HOME/.sbclrc"; then mv "$HOME/.sbclrc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to sbclrc in home directory."
+ln -sv "${DOTFILES_HOME}/common-lisp/sbclrc" "$HOME/.sbclrc"
+
+for file in ${BASH_FILES}; do
+    if test -f "$HOME/.$file"; then
+      mv "$HOME/.$file" ${DOTFILES_BACKUP};
+    fi
+    echo "Creating symlink to $file in home directory."
+    ln -sv "${DOTFILES_HOME}/shell/bash/$file" "$HOME/.$file"
+done
+
+if test -d "$HOME/.git-prompt-colors.sh"; then 
+  mv "$HOME/.git-prompt-colors.sh" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to prompt-theme in home directory."
+ln -sv "${DOTFILES_HOME}/shell/bash/prompt-theme" "$HOME/.git-prompt-colors.sh"
+
+echo -e "done \n"
+
+# Symlinking Directories:
+echo -e "Moving any existing config directories in ~ to ${DOTFILES_BACKUP} and creating new symlinks. \n"
+
+for dir in ${CONFIG_DIRECTORIES}; do
+    if test -d "${HOME_CONFIG}/$dir"; then
+      mv "${HOME_CONFIG}/$dir" ${DOTFILES_BACKUP};
+    fi
+    echo "Creating symlink to $dir in .config directory."
+    ln -sv "${DOTFILES_HOME}/$dir" "${HOME_CONFIG}/$dir"
+done
+
+if test -d "$HOME/.vim"; then mv "$HOME/.vim" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to vim in home directory."
+ln -sv "${DOTFILES_HOME}/vim" "$HOME/.vim"
+
+if test -d "$HOME/.emacs.d"; then mv "$HOME/.emacs.d" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to emacs in home directory."
+ln -sv "${DOTFILES_HOME}/emacs" "$HOME/.emacs.d"
+
+if test -d "${HOME_CONFIG}/qutebrowser"; then mv "${HOME_CONFIG}/qutebrowser" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to qutebrowser in .config directory."
+ln -sv "${DOTFILES_HOME}/browser/qutebrowser" "${HOME_CONFIG}/qutebrowser"
+
+if test -d "$HOME/texmf"; then mv "$HOME/texmf" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to texmf in home directory."
+ln -sv "${DOTFILES_HOME}/texmf" "$HOME/texmf"
+
+if test -d "$HOME/.bash_completion"; then mv "$HOME/.bash_completion" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to bash_completion in home directory."
+ln -sv "${DOTFILES_HOME}/alacritty/bash_completion" "$HOME/.bash_completion"
+
+echo "done \n"

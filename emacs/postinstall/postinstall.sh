@@ -1,1 +1,0 @@
-/home/niltnir09/dotfiles/shell/scripts/emacs-postinstall.sh
