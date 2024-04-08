@@ -1,0 +1,4 @@
+(use-modules (ice-9 readline))
+(use-modules (ice-9 colorized)) ; https://gitlab.com/NalaGinrut/guile-colorized
+(activate-readline)
+(activate-colorized)

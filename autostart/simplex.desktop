@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/simplex/bin/simplex
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=simplex-chat
+Name=simplex-chat
+Comment[en_US]=Runs simplex-chat on start up
+Comment=Runs simplex-chat on start up

@@ -1,0 +1,8 @@
+bind j scrollline 5
+bind k scrollline -5 
+bind gl tabnext
+bind gh tabprev
+bind <A-t> tabnew
+unbind <C-f>
+
+blacklistadd http://127.0.0.1:8080/builder

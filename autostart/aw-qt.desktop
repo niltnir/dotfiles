@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec="/usr/local/bin/aw"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=aw-qt
+Name=aw-qt
+Comment[en_US]=Starts activity watcher upon login.
+Comment=Starts activity watcher upon login.

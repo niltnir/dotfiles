@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# Function definitions go here!
+
+# Create a new directory and enter it
+function mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
+# Rename the extension of all files within a directory
+function renamex() {
+    oldext=$1
+    newext=$2
+    for f in *."${oldext}"; 
+        do mv -- "$f" "${f%."${oldext}"}."${newext}""; 
+    done
+} 
+
+function extract() {
+    tar xvf $1
+}
+
+# Compress and encrypt a file or directory with a passphrase
+function passenc() {
+    dataname=$1
+    basename="${dataname%.*}"
+    tar czf "${basename}".tar.gz "${dataname}"
+    gpg -c "${basename}".tar.gz
+    rm "${basename}".tar.gz
+}
+
+# Compress and encrypt a file or directory with key
+function keyenc() {
+    dataname=$1
+    keyid=$2
+    basename="${dataname%.*}"
+    tar czf "${basename}".tar.gz "${dataname}"
+    gpg -er "${keyid}" "${basename}".tar.gz
+    rm "${basename}".tar.gz
+}
+
+# Decrypt and expand a file or directory
+function decrypt() {
+    encrypted=$1
+    gpg -do encrypted.tar.gz "${encrypted}"
+    tar xvf encrypted.tar.gz
+    rm encrypted.tar.gz
+}
+
+# Determine size of a file or total size of a directory
+function fs() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh;
+    else
+        local arg=-sh;
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@";
+    else
+        du $arg .[^.]* ./*;
+    fi;
+}
+
+# Use Git’s colored diff when available
+hash git &>/dev/null;
+if [ $? -eq 0 ]; then
+    function diff() {
+        git diff --no-index --color-words "$@";
+    }
+fi;
+
+# Create a data URL from a file
+function dataurl() {
+    local mimeType=$(file -b --mime-type "$1");
+    if [[ $mimeType == text/* ]]; then
+        mimeType="${mimeType};charset=utf-8";
+    fi
+    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+}
+
+# Installs all .deb files in current directory using dpkg
+function debinstall() {
+    sudo dpkg -i *.deb
+}

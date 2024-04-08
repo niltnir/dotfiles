@@ -1,0 +1,29 @@
+# Environment variables go here!
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:~/.local/bin
+export MANPATH=/usr/local/man/man1/:/usr/local/share/man/man1
+export INFOPATH=/usr/share/info/emacs:~/TexLive/texmf-dist/doc/info
+export SBCL_HOME=/usr/local/lib/sbcl/
+export PYTHONPATH=${PYTHONPATH}:${HOME}/github-installs
+export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0\
+${GUILE_LOAD_PATH:+:}$GUILE_LOAD_PATH"
+export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache\
+${GUILE_LOAD_COMPILED_PATH:+:}$GUILE_COMPILED_LOAD_PATH"
+export EDITOR=/usr/bin/vim
+export COLORTERM=truecolor
+# export TERM=xterm-256color
+# export TERM=xterm-24bit
+if [ -f /usr/bin/zathura ]; then
+  export PDFVIEWER='zathura'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Tell grep to highlight matches
+export GREP_OPTIONS='—color=auto'
+
