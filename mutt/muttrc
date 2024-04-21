@@ -1,0 +1,157 @@
+# Credentials
+source "gpg -dq ~/.mutt/credentials.gpg |"
+
+# Basic Options
+set wait_key=no
+set mbox_type=Maildir
+set delete
+unset confirmappend
+set quit
+unset mark_old
+set beep_new
+set pipe_decode
+set thorough_search
+unset move
+auto_view text/html
+alternative_order text/plain text/html
+
+# Maildir 
+set folder=~/Mail/Main/
+set spoolfile="+INBOX"
+set postponed="+Drafts"
+set record="+Sent"
+mailboxes "+------ Active ------" \
+          +INBOX \
+          +Drafts \
+          +Sent \
+          "+----- Archived -----" \
+          +Archive/Received \
+          +Archive/Sent
+
+# Encryption
+set pgp_sign_as=`echo \$GPG_PUB_ID`
+set pgp_timeout=300
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_replysign=yes
+set crypt_replysignencrypted=yes
+set crypt_replyencrypt=yes
+set crypt_verify_sig=yes
+set pgp_use_gpg_agent=yes
+
+# Paths 
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+set mailcap_path=~/.mutt/mailcap
+set signature=~/.mutt/signature
+set tmpdir=~/.mutt/tmp
+
+# Contacts 
+set sort_alias=alias
+set reverse_alias=yes
+source "gpg -dq ~/.mutt/addressbook.gpg |"
+
+# Colors
+source "~/.mutt/colors.niltnir"
+
+# Index
+set date_format="%m/%d"
+set index_format="[%Z]  %D  %-20.20F  %s"
+set sort=threads
+set sort_aux=reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+## Index Bindings
+bind index l display-message
+bind index gg first-entry
+bind index G last-entry
+bind index R group-reply
+bind index <tab> sync-mailbox
+bind index N search-opposite
+bind index p recall-message # index drafts
+
+### Mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+### Search
+bind index i limit
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+### Sync
+macro index ^ "<shell-escape>offlineimap<enter>" "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+### Archive
+folder-hook . unhook save-hook
+folder-hook . save-hook . +Archive/Received
+
+folder-hook +Sent unhook save-hook
+folder-hook +Sent save-hook . +Archive/Sent
+
+# Pager
+set pager_index_lines=10
+set menu_scroll
+set tilde
+unset markers
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+## Pager Bindings
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+bind pager N search-opposite
+
+### Use urlscan to follow links
+macro index,pager \Cu "<pipe-message> urlscan --width 150<Enter>" "call urlscan to open links" 
+
+# Composer
+set realname="Lynn Noda"
+set envelope_from
+set sig_dashes
+set edit_headers
+set fast_reply
+set askcc
+set fcc_attach
+unset mime_forward
+set forward_format = "Fwd: %s"
+set forward_decode
+set reply_to
+set forward_quote
+set editor=`echo \$EDITOR`
+
+## Use urlscan to follow links
+macro attach,compose \Cu "<pipe-entry> urlscan<Enter>" "call urlscan to open links" 
+
+## Auto-attach public key
+macro compose \Ck "<attach-key>`echo $GPG_PUB_ID`<enter><enter>"
+
+## Attachments
+bind attach <return> view-attach
+bind attach l view-attach
+
+# Header
+ignore *
+unignore from: to: cc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+
+# Sidebar
+set sidebar_visible=yes
+set sidebar_divider_char='│'
+set sidebar_width=24
+bind index,pager \Cn sidebar-toggle-visible
+bind index,pager J sidebar-next
+bind index,pager K sidebar-prev
+bind index,pager L sidebar-open
+set sidebar_format = " %B "
+
+# Statusbar (https://stevelosh.com/blog/2012/10/the-homely-mutt)
+set status_chars=" *%A"
+set status_format="───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"

@@ -1,0 +1,22 @@
+[general]
+ui = ttyui
+accounts = Main 
+pythonfile = ~/.mail/offlineimap.py
+fsync = false
+
+[Account Main]
+localrepository = Main-Local
+remoterepository = Main-Remote
+
+[Repository Main-Local]
+type = Maildir
+localfolders = ~/Mail/Main
+
+[Repository Main-Remote]
+type = IMAP
+remotehosteval = get_host()
+remoteusereval = get_user()
+remotepasseval = get_pass()
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda folder: folder not in ['Trash', 'Spam']
+createfolders = False

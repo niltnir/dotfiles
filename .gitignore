@@ -46,6 +46,7 @@ node_modules
 .venv
 Footer
 *.fasl
+*.gpg
 
 # Config Directories and Files
 secret/
@@ -59,6 +60,9 @@ ranger/plugins/zoxide
 browser/qutebrowser/bookmarks/*
 browser/qutebrowser/qsettings/
 browser/qutebrowser/quickmarks
+mutt/certificates
+mutt/tmp
+mutt/cache
 vim/plugged/
 vimiv/plugins/
 emacs/auto-save-list/

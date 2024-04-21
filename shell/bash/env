@@ -13,7 +13,10 @@ export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0\
 ${GUILE_LOAD_PATH:+:}$GUILE_LOAD_PATH"
 export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache\
 ${GUILE_LOAD_COMPILED_PATH:+:}$GUILE_COMPILED_LOAD_PATH"
+
 export EDITOR=/usr/bin/vim
+export BROWSER=/usr/bin/librewolf
+export GPG_PUB_ID=52C665CA0EF975816D1C11EA0FB1EA8200168FBB
 export COLORTERM=truecolor
 # export TERM=xterm-256color
 # export TERM=xterm-24bit

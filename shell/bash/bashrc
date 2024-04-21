@@ -60,3 +60,5 @@ fi
 eval "$(zoxide init bash)"
 source "$HOME/.bash_completion/alacritty"
 source "$HOME/dotfiles/shell/scripts/load_shell_config.sh" "bash"
+
+export GPG_TTY=$(tty)

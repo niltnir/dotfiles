@@ -1,10 +1,9 @@
 # Aliases definitions go here!
 
-# alias l='ls -CF'
 alias l="ls -la"       # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
-alias ll='ls -alF'
-alias la='ls -A'
+alias ll="ls -alF"
+alias la="ls -A"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -17,13 +16,12 @@ alias back="cd -"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias ls="ls --color=auto"
+    #alias dir="dir --color=auto"
+    #alias vdir="vdir --color=auto"
+    alias grep="grep --color=auto"
+    alias fgrep="fgrep --color=auto"
+    alias egrep="egrep --color=auto"
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -33,5 +31,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias emacs="emacs -nw"
 # alias emacs="xterm -tn xterm-256color -e emacs -nw"
 alias ssh="TERM=xterm-256color ssh"
-
 alias von="python -m von"
+alias mutt="home && mutt"

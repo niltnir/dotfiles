@@ -75,6 +75,9 @@ function! BuildComposer(info)
 endfunction
 let g:markdown_composer_autostart = 1
 
+" Email:
+au BufRead /tmp/mutt-* set tw=72
+
 " vim-plug plug-ins:
 call plug#begin()
 Plug 'SirVer/ultisnips'
@@ -337,7 +340,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " vim-prettier instead:
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat_require_pragma = 0
-au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.js,*.json PrettierAsync
+au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.js PrettierAsync
+" au BufWritePre *.json PrettierAsync
 
 " vim-slime:
 let g:slime_target = "vimterminal"

@@ -1,0 +1,55 @@
+# niltnir color-scheme 
+
+# ui
+color normal white default
+color indicator black cyan
+color index cyan default '~G' # encrypted
+color index brightwhite default '~N' # new
+color index brightmagenta default '~D' # deleted
+color tree brightcolor14 default
+color markers brightmagenta default
+color status brightcyan default 
+color error magenta default 
+
+# email components
+color hdrdefault brightcolor86 default 
+color attachment color14 default
+color signature brightcolor11 default
+color tilde color8 default
+
+# text
+color body brightmagenta default "(^| )[*_]+[-&[:alnum:]]+[*_]( |$)" # bold/underline
+color body brightcolor14 default "^ *[-+*o] +" # list item
+color body color14 default "^-.*"
+color body color14 default "^[+].*"
+color body brightcolor14 default "(^| )[;:8ö][-^o]?[)>(|/\\]+" # smiley
+
+# urls
+color body brightmagenta default "(finger|ftp|http|https|news|telnet)://[^ >]*" # url w/ protocol
+color body brightmagenta default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?" # web url
+color body brightmagenta default "<URL:[^ ]*>" # specified url
+
+# email addresses
+color body brightcolor86 default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+" # email address
+
+# files
+color body brightmagenta default "(^| |[-.[:alnum:]]+:+)~?\(/[-_.'[:alnum:]]+\)+/?" # unix file path
+color body brightwhite default "^diff .*"
+color body brightcolor11 default "^@@.*"
+
+# date formats
+color body color86 default "[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?"
+color body color86 default "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)[ .]+[0-9]{1,2}(st|nd|rd|th)?,?( +(19|20)[0-9]{2}(,?( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?)?"
+color body color86 default "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?[0-9]{1,2}(st|nd|rd|th)?[ .]+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?),?( +(19|20)?[0-9]{2})?(( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+
+# quote levels
+color quoted color8   default
+color quoted1 color30 default
+color quoted2 color8  default
+color quoted3 color30 default
+color quoted4 color8  default
+color quoted5 color30 default
+color quoted6 color8  default
+color quoted7 color30 default
+color quoted8 color34 default
+color quoted9 color30 default

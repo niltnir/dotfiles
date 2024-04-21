@@ -81,3 +81,10 @@ function dataurl() {
 function debinstall() {
     sudo dpkg -i *.deb
 }
+
+# Displays all terminal colors
+function showcolors() {
+    for color in {1..255}
+        do echo -en "\033[38;5;${color}m38;5;${color} \n"
+    done | column -x
+}

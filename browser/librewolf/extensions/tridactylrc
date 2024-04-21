@@ -1,5 +1,10 @@
 bind j scrollline 5
 bind k scrollline -5 
+bind f hint -t
+bind F hint
+unbind s
+bind sf hint -s
+bind yf hint -y
 bind gl tabnext
 bind gh tabprev
 bind <A-t> tabnew

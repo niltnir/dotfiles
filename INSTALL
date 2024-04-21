@@ -58,6 +58,18 @@ if test -d "$HOME/.sbclrc"; then mv "$HOME/.sbclrc" ${DOTFILES_BACKUP}; fi
 echo "Creating symlink to sbclrc in home directory."
 ln -sv "${DOTFILES_HOME}/common-lisp/sbclrc" "$HOME/.sbclrc"
 
+if test -d "$HOME/.guile"; then mv "$HOME/.guile" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to guile in home directory."
+ln -sv "${DOTFILES_HOME}/guile" "$HOME/.guile"
+
+if test -d "$HOME/.offlineimaprc"; then mv "$HOME/.offlineimaprc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to offlineimap in home directory."
+ln -sv "${DOTFILES_HOME}/offlineimaprc" "$HOME/.offlineimaprc"
+
+if test -d "$HOME/.muttrc"; then mv "$HOME/.muttrc" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to mutt in home directory."
+ln -sv "${DOTFILES_HOME}/mutt/muttrc" "$HOME/.muttrc"
+
 for file in ${BASH_FILES}; do
     if test -f "$HOME/.$file"; then
       mv "$HOME/.$file" ${DOTFILES_BACKUP};
@@ -91,6 +103,10 @@ ln -sv "${DOTFILES_HOME}/vim" "$HOME/.vim"
 if test -d "$HOME/.emacs.d"; then mv "$HOME/.emacs.d" ${DOTFILES_BACKUP}; fi
 echo "Creating symlink to emacs in home directory."
 ln -sv "${DOTFILES_HOME}/emacs" "$HOME/.emacs.d"
+
+if test -d "$HOME/.mutt"; then mv "$HOME/.mutt" ${DOTFILES_BACKUP}; fi
+echo "Creating symlink to mutt in home directory."
+ln -sv "${DOTFILES_HOME}/mutt" "$HOME/.mutt"
 
 if test -d "${HOME_CONFIG}/qutebrowser"; then mv "${HOME_CONFIG}/qutebrowser" ${DOTFILES_BACKUP}; fi
 echo "Creating symlink to qutebrowser in .config directory."
